@@ -14,11 +14,13 @@ var fs = require('fs');
 var db = mongoose.connect("mongodb://localhost/quench");
 
 //ssl
+/*
 var sslOptions = {
   key: fs.readFileSync('cert.pem'),
   cert: fs.readFileSync('cert.pem'),
   passphrase: 'admin123@pass'
 };
+*/
 
 
 //app uses
@@ -28,18 +30,19 @@ app.use('/quenchloyalty.com', express.static(__dirname + '/quenchloyalty.com'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-/*
+
 app.listen(8000, function(){
     console.log("server is running on 8000");
-})*/
+})
 
 
 
 app.use('/users', userRouter);
 app.use('/images', imageRouter);
 app.use('/retailers', retailerRoute);
-
+/*
 https.createServer(sslOptions, app).listen(8443, function(){
  console.log("server is running on secured port 8443");
 
 })
+*/
