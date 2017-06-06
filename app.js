@@ -24,6 +24,7 @@ var sslOptions = {
 //app uses
 app.use(cors())
 app.use('/uploads', express.static(__dirname + '/uploads'));
+app.use('/quenchloyalty.com', express.static(__dirname + '/quenchloyalty.com'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
