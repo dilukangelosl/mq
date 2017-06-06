@@ -16,8 +16,8 @@ var db = mongoose.connect("mongodb://localhost/quench");
 //ssl
 
 var sslOptions = {
-  cert: fs.readFileSync('./sslcert/fullchain.pem'),
-    key: fs.readFileSync('./sslcert/privkey.pem')
+  cert: fs.readFileSync('./ssl/fullchain.pem'),
+    key: fs.readFileSync('./ssl/privkey.pem')
   
   
 };
