@@ -16,15 +16,14 @@ var db = mongoose.connect("mongodb://localhost/quench");
 //ssl
 
 var sslOptions = {
-  key: fs.readFileSync('key.pem'),
-  cert: fs.readFileSync('cert.pem'),
-  passphrase: 'admin123@pass'
+  cert: fs.readFileSync('./sslcert/fullchain.pem'),
+    key: fs.readFileSync('./sslcert/privkey.pem')
   
   
 };
 
 
-
+app.use(express.static('static'));
 //app uses
 app.use(cors())
 app.use('/uploads', express.static(__dirname + '/uploads'));
@@ -32,11 +31,11 @@ app.use('/quenchloyalty.com', express.static(__dirname + '/quenchloyalty.com'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-/*
-app.listen(8000, function(){
-    console.log("server is running on 8000");
+
+app.listen(8080, function(){
+    console.log("server is running on 8080");
 })
-*/
+
 
 
 
