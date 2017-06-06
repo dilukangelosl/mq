@@ -16,8 +16,9 @@ var db = mongoose.connect("mongodb://localhost/quench");
 //ssl
 
 var sslOptions = {
-  key: fs.readFileSync('cert.pem'),
-  cert: fs.readFileSync('cert.pem')
+  key: fs.readFileSync(path.resolve('privkey.pem')),
+  cert: fs.readFileSync(path.resolve('cert.pem'))
+  
   
 };
 
@@ -34,7 +35,8 @@ app.use(bodyParser.json());
 app.listen(8000, function(){
     console.log("server is running on 8000");
 })
-/*
+*/
+
 
 
 app.use('/users', userRouter);
