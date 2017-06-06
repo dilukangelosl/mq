@@ -18,8 +18,8 @@ app.use('/uploads', express.static(__dirname + '/uploads'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.listen(3000, function(){
-    console.log("server is running on 3000");
+app.listen(8000, function(){
+    console.log("server is running on 8000");
 })
 
 
