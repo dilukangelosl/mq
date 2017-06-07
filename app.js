@@ -10,6 +10,7 @@ var userRouter = require('./routes/users');
 var imageRouter = require('./routes/images');
 var retailerRoute = require('./routes/retailer');
 var qrRoute = require('./routes/qr');
+var dropRoute = require('./routes/drop');
 var fs = require('fs');
 //connect to db
 var db = mongoose.connect("mongodb://localhost/quench");
@@ -44,6 +45,7 @@ app.use('/users', userRouter);
 app.use('/images', imageRouter);
 app.use('/retailers', retailerRoute);
 app.use('/qr',qrRoute);
+app.use('/drops',dropRoute);
 https.createServer(sslOptions, app).listen(8443, function(){
  console.log("server is running on secured port 8443");
 

@@ -45,16 +45,16 @@ var update = function (req, res) {
         else {
             console.log(data[0]._id);
             Retailer.findById(data[0]._id, function (err, data) {
-                if (err || data ==null) {
+                if (err || data == null) {
                     res.status(500);
                     res.send("Cannot find by Id");
-                  }
+                }
                 else {
-                    
+
                     data.fullname = req.body.fullname;
                     data.displayname = req.body.displayname;
                     data.image = req.body.image;
-                    
+
 
                     data.save(function (err) {
                         if (err) {
