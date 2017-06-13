@@ -1,5 +1,6 @@
 var Drops = require('./../models/dropModel');
 var Pool = require('./../models/DroppoolModel');
+var User = require('./../models/userModel');
 
 var get = function (req, res) {
 
@@ -9,6 +10,8 @@ var get = function (req, res) {
             res.send("Cannot find by Id");
         }
         else {
+
+
             res.status = 200;
             res.send(data);
 
@@ -19,16 +22,59 @@ var get = function (req, res) {
 }
 
 
-var getusersbyretailerId = function(req,res){
+var getusersbyretailerId = function (req, res) {
 
- Drops.find({ "retailerid": req.params.id, "redeemed": false }, function (err, data) {
+    Drops.find({ "retailerid": req.params.id, "redeemed": false }, function (err, data) {
+        var newdata = [];
+        console.log("fiding users for " + req.params.id);
         if (err) {
             res.status(500);
             res.send("Cannot find by Id");
         }
         else {
-            res.status = 200;
-            res.send(data);
+
+            console.log("Length of this is reques " + data.length);
+            var counter = {};
+            for (var i = 0; i < data.length; i += 1) {
+                counter[data[i].userid] = (counter[data[i].userid] || 0) + 1;
+            }
+
+
+                var objlength = Object.keys(counter).length;
+                var c = 1 ;
+            for (var key in counter) {
+                
+                if (counter[key] > 1) {
+                           
+                    User.find({ "authId": key }, function (err, data) {
+                        if (err) {
+                    
+                        }
+                        else {
+                            newdata.push({userid:key,name: data[0].firstname+ " " + data[0].lastname,drops:counter[key]})
+                            if(objlength == c){
+                                res.status = 200;
+                                res.send(newdata);
+                            }else{
+                                c++;
+                            }
+                        }
+                    });
+
+
+
+
+
+
+                        
+                    console.log("we have ", key, " duplicated ", counter[key], " times");
+                }
+
+
+            }
+
+                 
+           
 
         }
     });
@@ -75,7 +121,7 @@ var getbyuserid = function (req, res) {
 }
 
 var getbyretailerid = function (req, res) {
-
+    console.log("get by retailer id");
     Drops.find({ "retailerid": req.params.id }, function (err, data) {
         if (err) {
             res.status(500);
@@ -122,22 +168,22 @@ var redeem = function (req, res) {
                             counter++;
                             updated.push(e);
                             if (counter === data.length) {
-                                
-                                var pool = new Pool({"userid":userid,"retailerid":retailerid,"redeemeddate":"","drops":drops});
-                                pool.save(function(err,de){
 
-                                        if(err){
-                                             res.status = 500;
-                                             res.send([]);
-                                        }
-                                        else{
-                                            res.status = 200;
-                                res.send(updated);
-                                        }
+                                var pool = new Pool({ "userid": userid, "retailerid": retailerid, "redeemeddate": "", "drops": drops });
+                                pool.save(function (err, de) {
+
+                                    if (err) {
+                                        res.status = 500;
+                                        res.send([]);
+                                    }
+                                    else {
+                                        res.status = 200;
+                                        res.send(updated);
+                                    }
 
                                 })
                             }
-                           
+
                         }
 
                     })
@@ -199,10 +245,10 @@ var addtopool = function (req, res) {
 module.exports = {
     get: get,
     add: add,
-    addtopool:addtopool,
+    addtopool: addtopool,
     getbyretailerid: getbyretailerid,
     getbyuserid: getbyuserid,
     redeem: redeem,
     getredeemed: getredeemed,
-    getusersbyretailerId:getusersbyretailerId
+    getusersbyretailerId: getusersbyretailerId
 };
