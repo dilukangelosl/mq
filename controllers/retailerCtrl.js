@@ -86,10 +86,12 @@ var update = function (req, res) {
 }
 
 var deleteretailer = function(req,res){
-
-Retailer.remove( {"_id": ObjectId(req.body.id)});
+console.log("removing " + req.body.id)
+Retailer.findById(req.body.id , function(err,retailer){
+    retailer.remove();
+});
 res.status(200);
-            res.send("Done : " + req.body.id);
+res.send("Done : " + req.body.id);
 }
 
 

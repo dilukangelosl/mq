@@ -10,7 +10,7 @@ retailerRoute.route('/:id')
 .get(controllers.getbyid)
 .post(controllers.update);
 
-retailerRoute.route('/removeretailer')
+retailerRoute.route('/remove/retailer/admin')
 
 .post(controllers.remove);
 
