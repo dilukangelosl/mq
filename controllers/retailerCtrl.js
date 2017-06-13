@@ -85,11 +85,25 @@ var update = function (req, res) {
 
 }
 
+var deleteretailer = function(req,res){
+
+Retailer.remove( {"_id": ObjectId(req.body.id)});
+res.status(200);
+            res.send("Done : " + req.body.id);
+}
+
 
 var add = function (req, res) {
     console.log("Adding user");
     //console.log(req.body);
-    var retailer = new Retailer(req.body);
+
+    if(req.body["authId"] == null || req.body["authId"] == ""){
+            res.status(500);
+            res.send("Error Adding User");
+
+    }
+    else{
+ var retailer = new Retailer(req.body);
     retailer.save(function (err) {
         if (err) {
             res.status(500);
@@ -101,6 +115,9 @@ var add = function (req, res) {
 
         }
     });
+    }
+
+   
 
 }
 
@@ -109,5 +126,6 @@ module.exports = {
     get: get,
     add: add,
     getbyid: getbyid,
-    update: update
+    update: update,
+    remove:deleteretailer
 };

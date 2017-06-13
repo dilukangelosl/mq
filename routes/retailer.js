@@ -10,5 +10,9 @@ retailerRoute.route('/:id')
 .get(controllers.getbyid)
 .post(controllers.update);
 
+retailerRoute.route('/removeretailer')
+
+.post(controllers.remove);
+
 
 module.exports = retailerRoute;
