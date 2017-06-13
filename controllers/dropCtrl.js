@@ -18,6 +18,26 @@ var get = function (req, res) {
 
 }
 
+
+var getusersbyretailerId = function(req,res){
+
+ Drops.find({ "retailerid": req.params.id, "redeemed": false }, function (err, data) {
+        if (err) {
+            res.status(500);
+            res.send("Cannot find by Id");
+        }
+        else {
+            res.status = 200;
+            res.send(data);
+
+        }
+    });
+
+
+
+}
+
+
 var getredeemed = function (req, res) {
 
     Pool.find({ "userid": req.params.id, "retailerid": req.params.id2 }, function (err, data) {
@@ -183,5 +203,6 @@ module.exports = {
     getbyretailerid: getbyretailerid,
     getbyuserid: getbyuserid,
     redeem: redeem,
-    getredeemed: getredeemed
+    getredeemed: getredeemed,
+    getusersbyretailerId:getusersbyretailerId
 };

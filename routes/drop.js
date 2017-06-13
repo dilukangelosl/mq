@@ -19,6 +19,11 @@ dropRouter.route('/redeemed/:id/:id2')
 dropRouter.route('/redeem/:userid/:retailerid/:drops')
 .get(controllers.redeem);
 
+dropRouter.route('/getusers/:id')
+.get(controllers.getbyretailerid);
+
+
+
 
 
 module.exports = dropRouter;
