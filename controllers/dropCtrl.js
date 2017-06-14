@@ -41,44 +41,45 @@ var getusersbyretailerId = function (req, res) {
             }
 
 
-                var objlength = Object.keys(counter).length;
-                var c = 1 ;
-                console.log(counter);
+            var objlength = Object.keys(counter).length;
+            var c = 1;
+            console.log(counter);
             for (var key in counter) {
-                console.log("counter = "+ key);
+                console.log("counter = " + key);
                 if (counter[key] > 1) {
-                           
+
                     User.find({ "authId": key }, function (err, data) {
                         if (err) {
                             res.status = 200;
-                                res.send(err);
+                            res.send(err);
                         }
                         else {
-                            newdata.push({userid:key,name: data[0].firstname+ " " + data[0].lastname,drops:counter[key]})
-                            console.log(objlength +" == "+ c);
-                            if(objlength == c){
-                                res.status = 200;
-                                res.send(newdata);
-                            }else{
-                                c++;
-                            }
+                            newdata.push({ userid: key, name: data[0].firstname + " " + data[0].lastname, drops: counter[key] })
+                            console.log(objlength + " == " + c);
+
                         }
                     });
 
 
 
+                    if (objlength == c) {
+                        res.status = 200;
+                        res.send(newdata);
+                    } else {
+                        console.log("incrementing counter");
+                        c++;
+                    }
 
 
 
-                        
                     console.log("we have ", key, " duplicated ", counter[key], " times");
                 }
 
 
             }
 
-                 
-           
+
+
 
         }
     });
