@@ -46,7 +46,7 @@ var getusersbyretailerId = function (req, res) {
             console.log(counter);
             for (var key in counter) {
                 console.log("counter = " + key);
-                if (counter[key] > 1) {
+                if (counter[key] > 0) {
 
                     User.find({ "authId": key }, function (err, data) {
                         if (err) {
