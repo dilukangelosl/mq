@@ -56,19 +56,20 @@ var getusersbyretailerId = function (req, res) {
                         else {
                             newdata.push({ userid: key, name: data[0].firstname + " " + data[0].lastname, drops: counter[key] })
                             console.log(objlength + " == " + c);
-
-                        }
-                    });
-
-
-
-                    if (objlength == c) {
+                             if (objlength == c) {
                         res.status = 200;
                         res.send(newdata);
                     } else {
                         console.log("incrementing counter");
                         c++;
                     }
+
+                        }
+                    });
+
+
+
+                   
 
 
 
