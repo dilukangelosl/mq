@@ -3,7 +3,6 @@ var schema = mongoose.Schema;
 
 var adminModel = new schema({
 
-    adminid:String,
     username:String,
     password:String
 

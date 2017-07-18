@@ -33,7 +33,7 @@ var addadmin = function (req, res) {
         }
         else {
             res.status = 200;
-            res.send(drop);
+            res.send(admin);
 
         }
     });
