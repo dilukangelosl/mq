@@ -65,7 +65,7 @@ var getusersbyretailerId = function (req, res) {
                 res.send(err);
             }
             else {
-                newdata.push({ userid: key, name: data[0].firstname + " " + data[0].lastname, dob: data[0].dob, gender: data[0].gender, email: data[0].email, drops: counter[keyoftheobject] })
+                newdata.push({ userid: keyoftheobject, name: data[0].firstname + " " + data[0].lastname, dob: data[0].dob, gender: data[0].gender, email: data[0].email, drops: counter[keyoftheobject] })
                 if (startingcounter == countersize) {
 
                     res.status = 200;
