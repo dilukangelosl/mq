@@ -48,15 +48,15 @@ var getusersbyretailerId = function (req, res) {
                 console.log("counter = " + key);
                 if (counter[key] > 0) {
 
+                    console.log("Counter before finding" = counter[key]);
+
                     User.find({ "authId": key }, function (err, data) {
                         if (err) {
                             res.status = 200;
                             res.send(err);
                         }
                         else {
-                            console.log("Testing");
-                            console.log(counter[key]);
-                            console.log("End Testing");
+                            
                             newdata.push({ userid: key, name: data[0].firstname + " " + data[0].lastname,dob:data[0].dob,gender:data[0].gender,email:data[0].email ,drops: counter[key] })
                             console.log(objlength + " == " + c);
                              if (objlength == c) {
