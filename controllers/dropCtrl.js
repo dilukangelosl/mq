@@ -48,7 +48,7 @@ var getusersbyretailerId = function (req, res) {
                 console.log("counter = " + key);
                 if (counter[key] > 0) {
 
-                    console.log("Counter before finding" = counter[key]);
+                    console.log("Counter before finding = " + counter[key]);
 
                     User.find({ "authId": key }, function (err, data) {
                         if (err) {
