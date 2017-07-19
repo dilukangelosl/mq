@@ -46,11 +46,11 @@ var getusersbyretailerId = function (req, res) {
             console.log(counter);
             for (var key in counter) {
                 console.log("counter = " + key);
-                
+                 var dropcountnew = counter[key];
 
                 if (counter[key] > 0) {
-                    var dropcountnew = counter[key];
                    
+                   console.log("drop count === " + dropcountnew );
 
                     User.find({ "authId": key }, function (err, data) {
                         if (err) {
