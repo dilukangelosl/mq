@@ -46,9 +46,11 @@ var getusersbyretailerId = function (req, res) {
             console.log(counter);
             for (var key in counter) {
                 console.log("counter = " + key);
-                if (counter[key] > 0) {
+                
 
-                    console.log("Counter before finding = " + counter[key]);
+                if (counter[key] > 0) {
+                    var dropcountnew = counter[key];
+                   
 
                     User.find({ "authId": key }, function (err, data) {
                         if (err) {
@@ -57,7 +59,7 @@ var getusersbyretailerId = function (req, res) {
                         }
                         else {
                             
-                            newdata.push({ userid: key, name: data[0].firstname + " " + data[0].lastname,dob:data[0].dob,gender:data[0].gender,email:data[0].email ,drops: counter[key] })
+                            newdata.push({ userid: key, name: data[0].firstname + " " + data[0].lastname,dob:data[0].dob,gender:data[0].gender,email:data[0].email ,drops: dropcountnew })
                             console.log(objlength + " == " + c);
                              if (objlength == c) {
                         res.status = 200;
