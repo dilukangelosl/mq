@@ -8,7 +8,10 @@ var retailersModel = new schema({
     displayname:String,
     image:String,
     email:String,
-    active:{type:Boolean, default:false}
+    active:{type:Boolean, default:false},
+    businesstype:String,
+    locationstreet:String,
+    locationtown:String
 
 })
 
