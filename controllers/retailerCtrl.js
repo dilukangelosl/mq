@@ -54,6 +54,9 @@ var update = function (req, res) {
                     data.fullname = req.body.fullname;
                     data.displayname = req.body.displayname;
                     data.image = req.body.image;
+                    data.businesstype = req.body.businesstype;
+                    data.locationstreet = req.body.locationstreet;
+                    data.locationtown = req.body.locationtown;
 
 
                     data.save(function (err) {
