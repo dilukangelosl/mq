@@ -49,8 +49,10 @@ var getusersbyretailerId = function (req, res) {
 
             }
             else{
-                res.status(500);
+              if(i == data.length -1){
+                    res.status(500);
         res.send("No results");
+              }
             }
         }
 
