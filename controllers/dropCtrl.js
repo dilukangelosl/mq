@@ -57,9 +57,8 @@ var getusersbyretailerId = function (req, res) {
 
     function finduseranddotherest(countersize) {
 
-console.log("Counter size" + countersize);
-
-        var keyoftheobject = Object.keys(counter)[startingcounter];
+        if(countersize > 0){
+ var keyoftheobject = Object.keys(counter)[startingcounter];
         console.log("user Key  == " + keyoftheobject + " keydata ==" + counter[keyoftheobject]);
 
         User.find({ "authId": keyoftheobject }, function (err, data) {
@@ -83,6 +82,13 @@ console.log("Counter size" + countersize);
             }
 
         });
+        }
+
+        else{
+             res.status(500);
+        res.send("No Drops");
+        }
+       
 
     }
 
