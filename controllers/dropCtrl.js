@@ -36,8 +36,8 @@ var getusersbyretailerId = function (req, res) {
 
     else {
 
-
-        for (var i = 0; i < data.length; i += 1) {
+if(data.length > 0) {
+for (var i = 0; i < data.length; i += 1) {
             counter[data[i].userid] = (counter[data[i].userid] || 0) + 1;
 
             if (i == data.length - 1) {
@@ -50,6 +50,12 @@ var getusersbyretailerId = function (req, res) {
             }
             
         }
+}else{
+    console.log("no drops for this user");
+  res.status(500);
+        res.send("No Drops");
+}
+        
 
     }
 
@@ -84,10 +90,7 @@ var getusersbyretailerId = function (req, res) {
         });
         }
 
-        else{
-             res.status(500);
-        res.send("No Drops");
-        }
+       
        
 
     }
